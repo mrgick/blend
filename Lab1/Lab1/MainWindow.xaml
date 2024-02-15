@@ -9,7 +9,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" Background="#FFFCDD09">
     <Window.Resources>
-        <Storyboard x:Key="Storyboard1"/>
+        <Storyboard x:Key="Storyboard1">
+            <ThicknessAnimationUsingKeyFrames SpeedRatio="1" Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(FrameworkElement.Margin)"  RepeatBehavior="Forever">
+                <EasingThicknessKeyFrame KeyTime="00:00:01.9000000" Value="0,543,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:16.9000000" Value="-4200,543,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:19" Value="-4200,543,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:21" Value="-4200,543,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames SpeedRatio="1" Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.Opacity)" RepeatBehavior="Forever">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01.9000000" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:16.9000000" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:19" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:21" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <b:Interaction.Triggers>
         <b:EventTrigger>
@@ -17,6 +31,10 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="151*"/>
+            <RowDefinition Height="25*"/>
+        </Grid.RowDefinitions>
         <Button x:Name="Btn" HorizontalAlignment="Left" Height="115" VerticalAlignment="Top" Width="280" Click="OpenLink" Background="{x:Null}" Margin="85,64,0,0" Foreground="Black" FontSize="72" FontStyle="Italic" BorderBrush="{x:Null}" Content="Курс">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -50,6 +68,14 @@
         <TextBlock x:Name="text2" HorizontalAlignment="Left" Height="110" Margin="85,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="520" FontSize="72" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" разработчик"/>
         <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="115" Margin="85,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="72" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White"><Run Text=" Python"/><LineBreak/><Run/></TextBlock>
         <Image HorizontalAlignment="Left" Height="576" Margin="704,-13,0,0" VerticalAlignment="Top" Width="576" Source="/notebook.png"/>
-        <TextBlock HorizontalAlignment="Left" Height="111" Margin="0,538,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1280" Background="#FF191919" Foreground="White" FontWeight="Bold" FontStyle="Italic" FontSize="72"><Run Language="ru-ru" Text=" "/><Run Text="Бегущая строка"/></TextBlock>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="111" Margin="0,543,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="5775" Background="#FF191919" Foreground="White" FontWeight="Bold" FontStyle="Italic" FontSize="72" RenderTransformOrigin="0.5,0.5" Text=" Скорее пройдите курс питон разработчика, ведь это ваш путь к мастерству в программировании на Python!" Grid.RowSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform></TextBlock>
     </Grid>
 </Window>
