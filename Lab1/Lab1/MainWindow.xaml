@@ -1,0 +1,55 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab1"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        x:Class="Lab1.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280" Background="#FFFCDD09">
+    <Window.Resources>
+        <Storyboard x:Key="Storyboard1"/>
+    </Window.Resources>
+    <b:Interaction.Triggers>
+        <b:EventTrigger>
+            <b:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{DynamicResource Storyboard1}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <Grid>
+        <Button x:Name="Btn" HorizontalAlignment="Left" Height="115" VerticalAlignment="Top" Width="280" Click="OpenLink" Background="{x:Null}" Margin="85,64,0,0" Foreground="Black" FontSize="72" FontStyle="Italic" BorderBrush="{x:Null}" Content="Курс">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="{x:Null}" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontWeight" Value="Light" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                    <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF191919" TargetName="Border" />
+                                        <Setter Property="TextElement.Foreground" Value="White" TargetName="contentPresenter"/>
+                                        <Setter Property="TextElement.FontWeight" Value="Bold" TargetName="contentPresenter"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <TextBlock x:Name="text2" HorizontalAlignment="Left" Height="110" Margin="85,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="520" FontSize="72" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" разработчик"/>
+        <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="115" Margin="85,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="72" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White"><Run Text=" Python"/><LineBreak/><Run/></TextBlock>
+        <Image HorizontalAlignment="Left" Height="576" Margin="704,-13,0,0" VerticalAlignment="Top" Width="576" Source="/notebook.png"/>
+        <TextBlock HorizontalAlignment="Left" Height="111" Margin="0,538,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1280" Background="#FF191919" Foreground="White" FontWeight="Bold" FontStyle="Italic" FontSize="72"><Run Language="ru-ru" Text=" "/><Run Text="Бегущая строка"/></TextBlock>
+    </Grid>
+</Window>
