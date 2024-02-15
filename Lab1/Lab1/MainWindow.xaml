@@ -9,14 +9,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" Background="#FFFCDD09">
     <Window.Resources>
-        <Storyboard x:Key="Storyboard1">
-            <ThicknessAnimationUsingKeyFrames SpeedRatio="1" Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(FrameworkElement.Margin)"  RepeatBehavior="Forever">
+        <Storyboard x:Name="storyboard" x:Key="run_text" RepeatBehavior="Forever" SpeedRatio="1">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(FrameworkElement.Margin)">
                 <EasingThicknessKeyFrame KeyTime="00:00:01.9000000" Value="0,543,0,0"/>
                 <EasingThicknessKeyFrame KeyTime="00:00:16.9000000" Value="-4200,543,0,0"/>
                 <EasingThicknessKeyFrame KeyTime="00:00:19" Value="-4200,543,0,0"/>
                 <EasingThicknessKeyFrame KeyTime="00:00:21" Value="-4200,543,0,0"/>
             </ThicknessAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames SpeedRatio="1" Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.Opacity)" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.Opacity)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="00:00:01.9000000" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="00:00:16.9000000" Value="1"/>
@@ -24,10 +24,33 @@
                 <EasingDoubleKeyFrame KeyTime="00:00:21" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="notebook" RepeatBehavior="Forever" SpeedRatio="1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NoteBook1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:02.5000000" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:05" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:12.4000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:15" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NoteBook2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:02.5000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:05" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:07.5000000" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:10" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NoteBook3" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:07.5000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:10" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:12.5000000" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:15" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <b:Interaction.Triggers>
         <b:EventTrigger>
-            <b:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{DynamicResource Storyboard1}" />
+            <b:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{DynamicResource run_text}" />
+        </b:EventTrigger>
+        <b:EventTrigger EventName="Loaded">
+            <b:ControlStoryboardAction Storyboard="{DynamicResource notebook}" ControlStoryboardOption="Play"/>
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <Grid>
@@ -67,7 +90,6 @@
         </Button>
         <TextBlock x:Name="text2" HorizontalAlignment="Left" Height="110" Margin="85,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="520" FontSize="72" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" разработчик"/>
         <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="115" Margin="85,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="72" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White"><Run Text=" Python"/><LineBreak/><Run/></TextBlock>
-        <Image HorizontalAlignment="Left" Height="576" Margin="704,-13,0,0" VerticalAlignment="Top" Width="576" Source="/notebook.png"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="111" Margin="0,543,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="5775" Background="#FF191919" Foreground="White" FontWeight="Bold" FontStyle="Italic" FontSize="72" RenderTransformOrigin="0.5,0.5" Text=" Скорее пройдите курс питон разработчика, ведь это ваш путь к мастерству в программировании на Python!" Grid.RowSpan="2">
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -77,5 +99,8 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </TextBlock.RenderTransform></TextBlock>
+        <Image x:Name="NoteBook1" HorizontalAlignment="Left" Height="490" Margin="720,29,0,0" VerticalAlignment="Top" Width="488" Source="/notebook1.png"/>
+        <Image x:Name="NoteBook2" HorizontalAlignment="Left" Height="490" Margin="720,29,0,0" VerticalAlignment="Top" Width="490" Source="/notebook2.png" Opacity="0"/>
+        <Image x:Name="NoteBook3" HorizontalAlignment="Left" Height="490" Margin="720,29,0,0" VerticalAlignment="Top" Width="490" Source="/notebook3.png" RenderTransformOrigin="3.35,0.02" Opacity="0"/>
     </Grid>
 </Window>
