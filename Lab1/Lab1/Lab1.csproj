@@ -107,5 +107,8 @@
   <ItemGroup>
     <Resource Include="notebook3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="wall.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,10 +11,10 @@
     <Window.Resources>
         <Storyboard x:Name="storyboard" x:Key="run_text" RepeatBehavior="Forever" SpeedRatio="1">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:01.9000000" Value="0,543,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="00:00:16.9000000" Value="-4200,543,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="00:00:19" Value="-4200,543,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="00:00:21" Value="-4200,543,0,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:01.9000000" Value="0,543,0,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:16.9000000" Value="-4200,543,0,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:19" Value="-4200,543,0,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:21" Value="-4200,543,0,0"/>
             </ThicknessAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.Opacity)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
@@ -44,6 +44,85 @@
                 <EasingDoubleKeyFrame KeyTime="00:00:15" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="figures" RepeatBehavior="Forever" SpeedRatio="1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:02.1000000" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:04.5000000" Value="270">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="15">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01.8000000" Value="30">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BounceEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:04.6000000" Value="15">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="15">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01.8000000" Value="30">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BounceEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:04.6000000" Value="15">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01.8000000" Value="179.747"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:04.5000000" Value="360.000">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuinticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="-178.643">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuinticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:04.5000000" Value="-360.000">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuinticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <b:Interaction.Triggers>
         <b:EventTrigger>
@@ -52,13 +131,71 @@
         <b:EventTrigger EventName="Loaded">
             <b:ControlStoryboardAction Storyboard="{DynamicResource notebook}" ControlStoryboardOption="Play"/>
         </b:EventTrigger>
+        <b:EventTrigger EventName="Loaded">
+            <b:ControlStoryboardAction Storyboard="{DynamicResource figures}" ControlStoryboardOption="Play"/>
+        </b:EventTrigger>
     </b:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="151*"/>
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="Btn" HorizontalAlignment="Left" Height="115" VerticalAlignment="Top" Width="280" Click="OpenLink" Background="{x:Null}" Margin="85,64,0,0" Foreground="Black" FontSize="72" FontStyle="Italic" BorderBrush="{x:Null}" Content="Курс">
+        <Image HorizontalAlignment="Left" Height="724" VerticalAlignment="Top" Width="1351" Source="/wall.jpg" Grid.RowSpan="2"/>
+        <Ellipse x:Name="ellipse" HorizontalAlignment="Left" Height="500" Margin="795,47,0,0" Stroke="White" VerticalAlignment="Top" Width="500" StrokeThickness="10"/>
+        <Ellipse x:Name="ellipse1" HorizontalAlignment="Left" Height="750" Margin="670,0,0,0" Stroke="White" VerticalAlignment="Center" Width="750" StrokeThickness="10"/>
+        <Rectangle x:Name="rectangle" HorizontalAlignment="Left" Height="67" Margin="690,426,0,0" Stroke="Black" VerticalAlignment="Top" Width="67" Fill="Black" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Grid x:Name="grid" HorizontalAlignment="Left" Height="121" VerticalAlignment="Top" Margin="660,75,0,0" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Path Data="M620,81 L710,164.04" Fill="Black" HorizontalAlignment="Left" Height="120" Stroke="Black" Stretch="Fill" VerticalAlignment="Center" Width="120" StrokeThickness="35"/>
+            <Path Data="M620,81 L710,164.04" Fill="Black" HorizontalAlignment="Left" Height="120" Stroke="Black" Stretch="Fill" VerticalAlignment="Center" Width="120" StrokeThickness="34.7" RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90.061"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+        </Grid>
+        <Grid x:Name="grid2" HorizontalAlignment="Left" Height="121" VerticalAlignment="Top" Margin="1150,385,0,0" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Path Data="M620,81 L710,164.04" Fill="Black" HorizontalAlignment="Left" Height="120" Stroke="Black" Stretch="Fill" VerticalAlignment="Center" Width="120" StrokeThickness="35"/>
+            <Path Data="M620,81 L710,164.04" Fill="Black" HorizontalAlignment="Left" Height="120" Stroke="Black" Stretch="Fill" VerticalAlignment="Center" Width="120" StrokeThickness="34.7" RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90.061"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+        </Grid>
+        <Button x:Name="Btn" HorizontalAlignment="Left" Height="115" VerticalAlignment="Top" Width="315" Click="OpenLink" Background="{x:Null}" Margin="65,81,0,0" Foreground="Black" FontSize="80" FontStyle="Italic" BorderBrush="{x:Null}" Content="Курс">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="{x:Null}" />
@@ -88,8 +225,8 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBlock x:Name="text2" HorizontalAlignment="Left" Height="110" Margin="85,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="520" FontSize="72" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" разработчик"/>
-        <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="115" Margin="85,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="72" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White"><Run Text=" Python"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="text2" HorizontalAlignment="Left" Height="132" Margin="65,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="575" FontSize="80" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" разработчик"/>
+        <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="123" Margin="65,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" FontSize="80" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White"><Run Text=" Python"/><LineBreak/><Run/></TextBlock>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="111" Margin="0,543,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="5775" Background="#FF191919" Foreground="White" FontWeight="Bold" FontStyle="Italic" FontSize="72" RenderTransformOrigin="0.5,0.5" Text=" Скорее пройдите курс питон разработчика, ведь это ваш путь к мастерству в программировании на Python!" Grid.RowSpan="2">
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -99,8 +236,8 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </TextBlock.RenderTransform></TextBlock>
-        <Image x:Name="NoteBook1" HorizontalAlignment="Left" Height="490" Margin="720,29,0,0" VerticalAlignment="Top" Width="488" Source="/notebook1.png"/>
-        <Image x:Name="NoteBook2" HorizontalAlignment="Left" Height="490" Margin="720,29,0,0" VerticalAlignment="Top" Width="490" Source="/notebook2.png" Opacity="0"/>
-        <Image x:Name="NoteBook3" HorizontalAlignment="Left" Height="490" Margin="720,29,0,0" VerticalAlignment="Top" Width="490" Source="/notebook3.png" RenderTransformOrigin="3.35,0.02" Opacity="0"/>
+        <Image x:Name="NoteBook1" HorizontalAlignment="Left" Height="470" Margin="762,50,0,0" VerticalAlignment="Top" Width="468" Source="/notebook1.png"/>
+        <Image x:Name="NoteBook2" HorizontalAlignment="Left" Height="470" Margin="762,50,0,0" VerticalAlignment="Top" Width="470" Source="/notebook2.png" Opacity="0"/>
+        <Image x:Name="NoteBook3" HorizontalAlignment="Left" Height="470" Margin="762,50,0,0" VerticalAlignment="Top" Width="470" Source="/notebook3.png" RenderTransformOrigin="3.35,0.02" Opacity="0"/>
     </Grid>
 </Window>
