@@ -11,16 +11,19 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Ink;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static Gomoku.GameLogic;
+using static System.Net.WebRequestMethods;
 
 namespace Gomoku
 {
     public partial class MainWindow : Window
     {
+        int compLV = 1;
         const int nRows = 10, nCols = 10;
         double baseHeight = 65.0, baseWidth = 65.0;
         GameLogic gameLogic;
@@ -36,7 +39,7 @@ namespace Gomoku
         void InitializeButton()
         {
             gameLogic = new GameLogic(nRows, nCols, 2);
-            computer = new Computer(gameLogic, 1);
+            computer = new Computer(gameLogic, compLV);
             buttonBoard = new Button[nRows, nCols];
             double baseHeight = fieldGrid.Height / nRows;
             double baseWidth = fieldGrid.Width / nRows;
@@ -76,54 +79,114 @@ namespace Gomoku
                 }
             }
         }
+
+        private void DrawEllipse(int r, int c)
+        {
+            Ellipse ellipse = new Ellipse();
+            ellipse.Stroke = Brushes.Red;
+            ellipse.StrokeThickness = 5;
+            ellipse.Width = baseWidth - 5;
+            ellipse.Height = baseHeight - 5;
+            Grid.SetRow(ellipse, r);
+            Grid.SetColumn(ellipse, c);
+            fieldGrid.Children.Add(ellipse);
+        }
+
+        private void DrawCross(int r, int c)
+        {
+            Line line = new Line();
+            line.Stroke = Brushes.Blue;
+            line.StrokeThickness = 5;
+            line.X1 = 0;
+            line.Y1 = 0;
+            line.X2 = baseWidth;
+            line.Y2 = baseHeight;
+            Grid.SetRow(line, r);
+            Grid.SetColumn(line, c);
+            Line line2 = new Line();
+            line2.Stroke = Brushes.Blue;
+            line2.StrokeThickness = 5;
+            line2.X1 = 0;
+            line2.Y1 = baseHeight;
+            line2.X2 = baseWidth;
+            line2.Y2 = 0;
+            Grid.SetRow(line2, r);
+            Grid.SetColumn(line2, c);
+            fieldGrid.Children.Add(line);
+            fieldGrid.Children.Add(line2);
+        }
+
         public void NextMove(object sender, RoutedEventArgs e)
         {   
-            // wtf...
             Button sendButton = (Button)sender;
             int r = Grid.GetRow(sendButton);
             int c = Grid.GetColumn(sendButton);
-            Ellipse ellipse = new Ellipse();
-            ellipse.Stroke = Brushes.Black;
-            double width = baseWidth * (c+1);
-            ellipse.Width = 100;
-            double height = baseHeight * (r+1);
-            ellipse.Height = 100;
-            ellipse.Margin = new Thickness(10, 10, 0, 0);
-            double left = width - baseWidth;
-            double top = height - baseHeight;
-            double zero = 0.0;
-            //Console.WriteLine(left.);
-            //ellipse.Margin = new Thickness(left, top, zero, zero);
-            Console.WriteLine(ellipse.Width);
-            Console.WriteLine(ellipse.Height);
-            Console.WriteLine(ellipse.Margin);
             
-            fieldGrid.Children.Add(ellipse);
-            Console.WriteLine(ellipse);
-
-            Console.WriteLine(fieldGrid.Children);
-            Console.WriteLine(buttonBoard[r, c].Parent); 
             if (!gameLogic.IsEmpty(r, c))
                 return;
+
             Console.Write(r.ToString());
             Console.Write(" ");
             Console.Write(c.ToString());
             Console.Write("\n");
 
+            gameLogic.NextMove(r, c);
+            DrawCross(r, c);
+            if (gameLogic.CheckWin(r, c))
+            {
+                MessageBox.Show(Application.Current.MainWindow, "Player won", "End Game");
+                fieldGrid.IsEnabled = false;
+                return;
+            }
 
+            Move move = computer.NextMove();
+            gameLogic.NextMove(move.row, move.column);
+            DrawEllipse(move.row, move.column);
+            if (gameLogic.CheckWin(move.row, move.column))
+            {
+                MessageBox.Show(Application.Current.MainWindow, "Computer won", "End Game");
+                fieldGrid.IsEnabled = false;
+                return;
+            }
 
-
-            //< Ellipse HorizontalAlignment = "Left" Height = "70" Margin = "250,309,0,0" Stroke = "Black" VerticalAlignment = "Top" Width = "70" />
         }
 
         private void NewGame(object sender, RoutedEventArgs e)
         {
+            var ellipses = fieldGrid.Children.OfType<Ellipse>().ToList();
+            foreach (var ellipse in ellipses)
+            {
+                fieldGrid.Children.Remove(ellipse);
+            }
+            var lines = fieldGrid.Children.OfType<Line>().ToList();
+            foreach (var line in lines)
+            {
+                fieldGrid.Children.Remove(line);
+            }
+
+            gameLogic = new GameLogic(nRows, nCols, 2);
+            computer = new Computer(gameLogic, compLV);
+            fieldGrid.IsEnabled = true;
 
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        private void RadioButton1_Checked(object sender, RoutedEventArgs e)
         {
-
+            compLV = 1;
+            computer.ChangeLV(1);
         }
+
+        private void RadioButton2_Checked(object sender, RoutedEventArgs e)
+        {
+            compLV = 2;
+            computer.ChangeLV(2);
+        }
+
+        private void RadioButton3_Checked(object sender, RoutedEventArgs e)
+        {
+            compLV = 3;
+            computer.ChangeLV(3);
+        }
+
     }
 }

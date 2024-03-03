@@ -10,7 +10,7 @@ namespace Gomoku
         int maxDepth;
         int maxMoveSearch;
 
-        static readonly int[] maxMoveSearchLV = { 1, 7, 7, 7, 7, 20 };
+        static readonly int[] maxMoveSearchLV = { 7, 7, 7, 7, 7, 20 };
         static readonly int[] maxDepthLV = { 1, 1, 3, 6, 8, 7 };
         public Computer(GameLogic game, int lv)
         {
@@ -71,6 +71,7 @@ namespace Gomoku
         {
             maxDepth = maxDepthLV[lv];
             maxMoveSearch = maxMoveSearchLV[lv];
+            Console.Write("Computer level="+lv.ToString()+": "+maxDepth.ToString() + " " +maxMoveSearch.ToString()+"\n");
         }
         public Move NextMove()
         {

@@ -144,8 +144,8 @@
             </Button.Style>
         </Button>
         <TextBlock x:Name="text1_Copy" HorizontalAlignment="Left" Height="113" Margin="766,436,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="404" FontSize="80" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Text=" Difficulty" TextDecorations="Underline"/>
-        <RadioButton x:Name="RadioButton1" Style="{DynamicResource RadioButtonStyleCustom}" Content="1" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.752,0.409" Margin="745,554,0,0" FontSize="80" IsChecked="True"/>
-        <RadioButton x:Name="RadioButton2" Style="{DynamicResource RadioButtonStyleCustom}" Content="2" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.469,0.455" Margin="916,554,0,0" FontSize="80"/>
-        <RadioButton x:Name="RadioButton3" Style="{DynamicResource RadioButtonStyleCustom}" Content="3" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.469,0.455" Margin="1090,554,0,0" FontSize="80"/>
+        <RadioButton x:Name="RadioButton1" Style="{DynamicResource RadioButtonStyleCustom}" Content="1" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.752,0.409" Margin="745,554,0,0" FontSize="80" IsChecked="True" Click="RadioButton1_Checked"/>
+        <RadioButton x:Name="RadioButton2" Style="{DynamicResource RadioButtonStyleCustom}" Content="2" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.469,0.455" Margin="916,554,0,0" FontSize="80" Click="RadioButton2_Checked"/>
+        <RadioButton x:Name="RadioButton3" Style="{DynamicResource RadioButtonStyleCustom}" Content="3" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.5,0.5" Margin="1090,554,0,0" FontSize="80" Click="RadioButton3_Checked"/>
     </Grid>
 </Window>
