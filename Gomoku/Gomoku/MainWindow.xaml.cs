@@ -13,6 +13,7 @@ using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -116,8 +117,31 @@ namespace Gomoku
             fieldGrid.Children.Add(line2);
         }
 
+        void DrawEndMessage(int result = 0)
+        {
+            blurGrid.IsEnabled = false;
+            if (result == 0)
+            {
+                EndMessage.Text = "Tie!";
+                EndMessage.Foreground = Brushes.White;
+            }
+            else if (result == 1)
+            {
+                EndMessage.Text = "You win!";
+                EndMessage.Foreground = Brushes.Lime;
+            }
+            else if (result == 2) {
+                EndMessage.Text = "You lose!";
+                EndMessage.Foreground = Brushes.Red;
+            }
+            
+            Storyboard sb = (Storyboard)TryFindResource("Storyboard_TextBlock");
+            sb.Begin();
+            blurGrid.IsEnabled = true;
+        }
+
         public void NextMove(object sender, RoutedEventArgs e)
-        {   
+        {
             Button sendButton = (Button)sender;
             int r = Grid.GetRow(sendButton);
             int c = Grid.GetColumn(sendButton);
@@ -134,7 +158,12 @@ namespace Gomoku
             DrawCross(r, c);
             if (gameLogic.CheckWin(r, c))
             {
-                MessageBox.Show(Application.Current.MainWindow, "Player won", "End Game");
+                DrawEndMessage(1);
+                fieldGrid.IsEnabled = false;
+                return;
+            } else if (gameLogic.isEnd())
+            {
+                DrawEndMessage(0);
                 fieldGrid.IsEnabled = false;
                 return;
             }
@@ -144,7 +173,12 @@ namespace Gomoku
             DrawEllipse(move.row, move.column);
             if (gameLogic.CheckWin(move.row, move.column))
             {
-                MessageBox.Show(Application.Current.MainWindow, "Computer won", "End Game");
+                DrawEndMessage(2);
+                fieldGrid.IsEnabled = false;
+                return;
+            } else if (gameLogic.isEnd())
+            {
+                DrawEndMessage(0);
                 fieldGrid.IsEnabled = false;
                 return;
             }

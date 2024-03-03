@@ -38,6 +38,23 @@ namespace Gomoku
             this.comChess = comChess;
         }
 
+        public bool isEnd()
+        {
+            bool flag = true;
+            for (int i = 0; i < nRows; i++)
+            {
+                for (int j = 0; j < nCols; j++)
+                {
+                    if (matrix[i, j] == 0)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            return flag;
+        }
+
         public bool IsEmpty(int r, int c)
         {
             return matrix[r, c] == 0;

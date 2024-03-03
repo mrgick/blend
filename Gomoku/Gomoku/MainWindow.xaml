@@ -106,46 +106,75 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Key="Storyboard_TextBlock">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="textGrid" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Hidden}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:00.2000000" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:02" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:03" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textGrid" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="blurGrid" Storyboard.TargetProperty="(UIElement.Effect).(BlurEffect.Radius)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="30"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="30"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Grid>
-        <Image HorizontalAlignment="Left" Height="724" VerticalAlignment="Top" Width="1298" Source="/wall.jpg"/>
-        <Rectangle HorizontalAlignment="Left" Height="660" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="660" StrokeThickness="5"/>
-        <Grid x:Name="fieldGrid" HorizontalAlignment="Left" Height="650" Margin="15,0,0,0" VerticalAlignment="Center" Width="650"/>
-        <Rectangle HorizontalAlignment="Left" Height="660" Margin="680,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="575" StrokeThickness="5"/>
-        <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="182" Margin="705,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" FontSize="120" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" Gomoku"/>
-        <Button x:Name="Btn" HorizontalAlignment="Left" Height="125" VerticalAlignment="Top" Width="500" Click="NewGame" Background="{x:Null}" Margin="718,284,0,0" Foreground="Black" FontSize="90" FontStyle="Italic" BorderBrush="{x:Null}" Content="New Game" FontWeight="Bold">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="{x:Null}" />
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="FontWeight" Value="Light" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border x:Name="Border" Background="{TemplateBinding Background}">
-                                    <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FF191919" TargetName="Border" />
-                                        <Setter Property="TextElement.Foreground" Value="White" TargetName="contentPresenter"/>
-                                        <Setter Property="TextElement.FontWeight" Value="Bold" TargetName="contentPresenter"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Cursor" Value="Hand"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <TextBlock x:Name="text1_Copy" HorizontalAlignment="Left" Height="113" Margin="766,436,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="404" FontSize="80" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Text=" Difficulty" TextDecorations="Underline"/>
-        <RadioButton x:Name="RadioButton1" Style="{DynamicResource RadioButtonStyleCustom}" Content="1" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.752,0.409" Margin="745,554,0,0" FontSize="80" IsChecked="True" Click="RadioButton1_Checked"/>
-        <RadioButton x:Name="RadioButton2" Style="{DynamicResource RadioButtonStyleCustom}" Content="2" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.469,0.455" Margin="916,554,0,0" FontSize="80" Click="RadioButton2_Checked"/>
-        <RadioButton x:Name="RadioButton3" Style="{DynamicResource RadioButtonStyleCustom}" Content="3" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.5,0.5" Margin="1090,554,0,0" FontSize="80" Click="RadioButton3_Checked"/>
+        <Grid x:Name="blurGrid">
+            <Grid.Effect>
+                <BlurEffect Radius="0" />
+            </Grid.Effect>
+            <Image HorizontalAlignment="Left" Height="724" VerticalAlignment="Top" Width="1298" Source="/wall.jpg"/>
+            <Rectangle HorizontalAlignment="Left" Height="660" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="660" StrokeThickness="5"/>
+            <Grid x:Name="fieldGrid" HorizontalAlignment="Left" Height="650" Margin="15,0,0,0" VerticalAlignment="Center" Width="650"/>
+            <Rectangle HorizontalAlignment="Left" Height="660" Margin="680,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="575" StrokeThickness="5"/>
+            <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="182" Margin="705,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" FontSize="120" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" Gomoku"/>
+            <Button x:Name="Btn" HorizontalAlignment="Left" Height="125" VerticalAlignment="Top" Width="500" Click="NewGame" Background="{x:Null}" Margin="718,284,0,0" Foreground="Black" FontSize="90" FontStyle="Italic" BorderBrush="{x:Null}" Content="New Game" FontWeight="Bold">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{x:Null}" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontWeight" Value="Light" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF191919" TargetName="Border" />
+                                            <Setter Property="TextElement.Foreground" Value="White" TargetName="contentPresenter"/>
+                                            <Setter Property="TextElement.FontWeight" Value="Bold" TargetName="contentPresenter"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBlock x:Name="text1_Copy" HorizontalAlignment="Left" Height="113" Margin="766,436,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="404" FontSize="80" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Text=" Difficulty" TextDecorations="Underline"/>
+            <RadioButton x:Name="RadioButton1" Style="{DynamicResource RadioButtonStyleCustom}" Content="1" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.752,0.409" Margin="745,554,0,0" FontSize="80" IsChecked="True" Click="RadioButton1_Checked"/>
+            <RadioButton x:Name="RadioButton2" Style="{DynamicResource RadioButtonStyleCustom}" Content="2" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.469,0.455" Margin="916,554,0,0" FontSize="80" Click="RadioButton2_Checked"/>
+            <RadioButton x:Name="RadioButton3" Style="{DynamicResource RadioButtonStyleCustom}" Content="3" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.5,0.5" Margin="1090,554,0,0" FontSize="80" Click="RadioButton3_Checked"/>
+        </Grid>
+        <Grid x:Name="textGrid" Visibility="Hidden">
+            <Rectangle HorizontalAlignment="Center" Height="135" Stroke="Black" VerticalAlignment="Center" Width="1280" Fill="Black" Opacity="0.7"/>
+            <TextBlock x:Name="EndMessage" HorizontalAlignment="Center" Height="150" TextWrapping="Wrap" VerticalAlignment="Center" Text="Tie!" FontSize="100" FontWeight="Bold" Foreground="White"/>
+        </Grid>
     </Grid>
 </Window>
