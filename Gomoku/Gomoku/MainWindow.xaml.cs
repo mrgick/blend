@@ -121,12 +121,12 @@ namespace Gomoku
                 DoubleAnimation anim = new DoubleAnimation();
                 if (random.Next(0, 2) == 0)
                 {
-                    anim.From = random.Next(0, 6);
+                    anim.From = random.Next(0, 1);
                     anim.To = 7;
                 }
                 else
                 {
-                    anim.From = random.Next(8, 20);
+                    anim.From = random.Next(10, 25);
                     anim.To = 7;
                 }
                 anim.Duration = TimeSpan.FromSeconds(0.3);
@@ -134,7 +134,7 @@ namespace Gomoku
             } else if (rand == 4) 
             {
                 ThicknessAnimation anim = new ThicknessAnimation();
-                int margin = -random.Next(10, Convert.ToInt32(baseWidth)+1);
+                int margin = -random.Next(Convert.ToInt32(baseWidth / 2) + 1, Convert.ToInt32(baseWidth)+1);
                 int rnd2 = random.Next(0, 4);
                 if (rnd2 == 0)
                 {
@@ -154,20 +154,29 @@ namespace Gomoku
                 anim.To = new Thickness(0, 0, 0, 0);
                 anim.Duration = TimeSpan.FromSeconds(0.3);
                 ellipse.BeginAnimation(Ellipse.MarginProperty, anim);
+            } else if (rand == 5)
+            {
+                DoubleAnimation anim = new DoubleAnimation();
+                anim.From = random.Next(0, 100);
+                anim.To = 360;
+                anim.Duration = TimeSpan.FromSeconds(0.3);
+                RotateTransform rotateTransform1 = new RotateTransform();
+                ellipse.RenderTransform = rotateTransform1;
+                rotateTransform1.BeginAnimation(RotateTransform.AngleProperty, anim);
             }
         }
 
         private void DrawCross(int r, int c)
         {
-            Line line = new Line();
-            line.Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom("#66C4E3"));
-            line.StrokeThickness = 7;
-            line.X1 = 5;
-            line.Y1 = 5;
-            line.X2 = baseWidth - 5;
-            line.Y2 = baseHeight - 5;
-            Grid.SetRow(line, r);
-            Grid.SetColumn(line, c);
+            Line line1 = new Line();
+            line1.Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom("#66C4E3"));
+            line1.StrokeThickness = 7;
+            line1.X1 = 5;
+            line1.Y1 = 5;
+            line1.X2 = baseWidth - 5;
+            line1.Y2 = baseHeight - 5;
+            Grid.SetRow(line1, r);
+            Grid.SetColumn(line1, c);
             Line line2 = new Line();
             line2.Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom("#66C4E3"));
             line2.StrokeThickness = 7;
@@ -177,8 +186,91 @@ namespace Gomoku
             line2.Y2 = 5;
             Grid.SetRow(line2, r);
             Grid.SetColumn(line2, c);
-            fieldGrid.Children.Add(line);
+            fieldGrid.Children.Add(line1);
             fieldGrid.Children.Add(line2);
+
+            int rand = random.Next(1, 6);
+            if (rand == 1)
+            {
+                DoubleAnimation anim = new DoubleAnimation();
+                if (random.Next(0, 2) == 0)
+                {
+                    anim.From = random.Next(0, Convert.ToInt32(baseWidth) - 10);
+                    anim.To = baseWidth - 5;
+                }
+                else
+                {
+                    anim.From = random.Next(Convert.ToInt32(baseWidth), Convert.ToInt32(baseWidth) + 10);
+                    anim.To = baseWidth - 5;
+                }
+                anim.Duration = TimeSpan.FromSeconds(0.3);
+                line1.BeginAnimation(Line.WidthProperty, anim);
+                line1.BeginAnimation(Line.HeightProperty, anim);
+                line2.BeginAnimation(Line.WidthProperty, anim);
+                line2.BeginAnimation(Line.HeightProperty, anim);
+            } else if (rand == 2)
+            {
+                ColorAnimation anim = new ColorAnimation();
+                String[] colors = { "#99F72F", "#DB2FF7", "#F7952F", "#9755A2", "#E36687" };
+                anim.From = (Color)ColorConverter.ConvertFromString(colors[random.Next(0, colors.Length)]);
+                anim.To = (Color)ColorConverter.ConvertFromString("#66C4E3");
+                anim.Duration = TimeSpan.FromSeconds(0.4);
+                line1.Stroke.BeginAnimation(SolidColorBrush.ColorProperty, anim);
+                line2.Stroke.BeginAnimation(SolidColorBrush.ColorProperty, anim);
+            } else if (rand == 3)
+            {
+                DoubleAnimation anim = new DoubleAnimation();
+                if (random.Next(0, 2) == 0)
+                {
+                    anim.From = random.Next(0, 1);
+                    anim.To = 7;
+                }
+                else
+                {
+                    anim.From = random.Next(10, 30);
+                    anim.To = 7;
+                }
+                anim.Duration = TimeSpan.FromSeconds(0.3);
+                line1.BeginAnimation(Ellipse.StrokeThicknessProperty, anim);
+                line2.BeginAnimation(Ellipse.StrokeThicknessProperty, anim);
+            } else if (rand == 4)
+            {
+                ThicknessAnimation anim = new ThicknessAnimation();
+                int margin = -random.Next(Convert.ToInt32(baseWidth/2) + 1, Convert.ToInt32(baseWidth) + 1);
+                int rnd2 = random.Next(0, 4);
+                if (rnd2 == 0)
+                {
+                    anim.From = new Thickness(margin, 0, 0, 0);
+                }
+                else if (rnd2 == 1)
+                {
+                    anim.From = new Thickness(0, margin, 0, 0);
+                }
+                else if (rnd2 == 2)
+                {
+                    anim.From = new Thickness(-margin, 0, 0, 0);
+                }
+                else if (rnd2 == 3)
+                {
+                    anim.From = new Thickness(0, -margin, 0, 0);
+                }
+                anim.To = new Thickness(0, 0, 0, 0);
+                anim.Duration = TimeSpan.FromSeconds(0.3);
+                line1.BeginAnimation(Ellipse.MarginProperty, anim);
+                line2.BeginAnimation(Ellipse.MarginProperty, anim);
+            } else if (rand == 5)
+            {
+                DoubleAnimation anim = new DoubleAnimation();
+                anim.From = random.Next(0, 100);
+                anim.To = 360;
+                anim.Duration = TimeSpan.FromSeconds(0.3);
+                RotateTransform rotateTransform1 = new RotateTransform();
+                line1.RenderTransform = rotateTransform1;
+                rotateTransform1.BeginAnimation(RotateTransform.AngleProperty, anim);
+                RotateTransform rotateTransform2 = new RotateTransform();
+                line2.RenderTransform = rotateTransform2;
+                rotateTransform2.BeginAnimation(RotateTransform.AngleProperty, anim);
+            }
         }
 
         void DrawEndMessage(int result = 0)
@@ -257,9 +349,9 @@ namespace Gomoku
                 fieldGrid.Children.Remove(ellipse);
             }
             var lines = fieldGrid.Children.OfType<Line>().ToList();
-            foreach (var line in lines)
+            foreach (var line1 in lines)
             {
-                fieldGrid.Children.Remove(line);
+                fieldGrid.Children.Remove(line1);
             }
 
             gameLogic = new GameLogic(nRows, nCols, 2);
