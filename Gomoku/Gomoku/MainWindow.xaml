@@ -270,7 +270,7 @@
             </Grid>
             <Rectangle x:Name="backrect" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.426" Fill="White" Margin="0,0,0,0"/>
             <Rectangle x:Name="backrect2" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.426" Fill="White" Margin="640,664,0,0"/>
-            <Rectangle x:Name="backrect3" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.426" Fill="#FFED523E" Margin="0,89,0,0">
+            <Rectangle x:Name="backrect3" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.426" Fill="White" Margin="0,665,0,0">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
