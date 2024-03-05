@@ -309,10 +309,10 @@ namespace Gomoku
 
         public void NextMove(object sender, RoutedEventArgs e)
         {
+            ClearAnimLine();
             UIElement sendButton = (UIElement)sender;
             int r = Grid.GetRow(sendButton);
             int c = Grid.GetColumn(sendButton);
-            
             if (!gameLogic.IsEmpty(r, c))
                 return;
 
@@ -414,7 +414,7 @@ namespace Gomoku
             line2.BeginAnimation(Line.OpacityProperty, anim);
         }
 
-        private void OnMouseLeaveGrid(object sender, MouseEventArgs e)
+        private void ClearAnimLine()
         {
             if (animLine1 != null)
             {
@@ -426,6 +426,11 @@ namespace Gomoku
                 fieldGrid.Children.Remove(animLine2);
                 animLine2 = null;
             }
+        }
+
+        private void OnMouseLeaveGrid(object sender, MouseEventArgs e)
+        {
+            ClearAnimLine();
         }
 
         private void NewGame(object sender, RoutedEventArgs e)
