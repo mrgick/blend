@@ -1,9 +1,10 @@
-﻿<Window x:Class="Gomoku.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gomoku"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors" x:Class="Gomoku.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" ResizeMode="CanMinimize">
     <Window.Resources>
@@ -131,17 +132,159 @@
                 <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="StoryboardFigures" RepeatBehavior="Forever" SpeedRatio="0.5">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="36">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="36"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="5"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:04" Value="36">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ellipse2" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="36">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="36"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="5"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:04" Value="36">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ellipse3" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="36">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="36"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="5"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:04" Value="36">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ellipse4" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="36">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="36"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="5"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:04" Value="36">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="backrect" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="645,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:02" Value="645,665,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,665,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:04" Value="0,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="backrect" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                <EasingColorKeyFrame KeyTime="00:00:00" Value="White"/>
+                <EasingColorKeyFrame KeyTime="00:00:01" Value="#FFED523E"/>
+                <EasingColorKeyFrame KeyTime="00:00:02" Value="#FF3EED98"/>
+                <EasingColorKeyFrame KeyTime="00:00:03" Value="#FF553EED"/>
+                <EasingColorKeyFrame KeyTime="00:00:04" Value="#FF3EED98"/>
+            </ColorAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="backrect2" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="640,664,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,664,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:02" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="645,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:04" Value="640,664,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="backrect2" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                <EasingColorKeyFrame KeyTime="00:00:00" Value="White"/>
+                <EasingColorKeyFrame KeyTime="00:00:01" Value="#FFED523E"/>
+                <EasingColorKeyFrame KeyTime="00:00:02" Value="#FF3EED98"/>
+                <EasingColorKeyFrame KeyTime="00:00:03" Value="#FF553EED"/>
+                <EasingColorKeyFrame KeyTime="00:00:04" Value="#FFFFFFFF"/>
+            </ColorAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="backrect3" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,665,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:02" Value="645,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="645,665,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:04" Value="0,665,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="backrect3" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                <EasingColorKeyFrame KeyTime="00:00:00" Value="#FFFFFFFF"/>
+                <EasingColorKeyFrame KeyTime="00:00:01" Value="#FFED523E"/>
+                <EasingColorKeyFrame KeyTime="00:00:02" Value="#FF3EED98"/>
+                <EasingColorKeyFrame KeyTime="00:00:03" Value="#FF553EED"/>
+                <EasingColorKeyFrame KeyTime="00:00:04" Value="#FFFFFFFF"/>
+            </ColorAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="backrect4" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="645,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="645,665,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:02" Value="0,665,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:04" Value="645,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="backrect4" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                <EasingColorKeyFrame KeyTime="00:00:00" Value="White"/>
+                <EasingColorKeyFrame KeyTime="00:00:01" Value="#FFED523E"/>
+                <EasingColorKeyFrame KeyTime="00:00:02" Value="#FF3EED98"/>
+                <EasingColorKeyFrame KeyTime="00:00:03" Value="#FF553EED"/>
+                <EasingColorKeyFrame KeyTime="00:00:04" Value="#FFFFFFFF"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{DynamicResource StoryboardFigures}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
     <Grid>
         <Grid x:Name="blurGrid">
             <Grid.Effect>
                 <BlurEffect Radius="0" />
             </Grid.Effect>
             <Image HorizontalAlignment="Left" Height="724" VerticalAlignment="Top" Width="1298" Source="/wall.jpg"/>
+            <Grid HorizontalAlignment="Left" Height="900" Margin="562,-96,0,0" VerticalAlignment="Top" Width="824">
+                <Ellipse x:Name="ellipse" HorizontalAlignment="Left" Height="250" Margin="584,650,0,0" Stroke="White" VerticalAlignment="Top" Width="240" StrokeThickness="36"/>
+                <Ellipse x:Name="ellipse2" HorizontalAlignment="Left" Height="250" Margin="0,650,0,0" Stroke="White" VerticalAlignment="Top" Width="240" StrokeThickness="36"/>
+                <Ellipse x:Name="ellipse3" HorizontalAlignment="Left" Height="250" Stroke="White" VerticalAlignment="Top" Width="240" StrokeThickness="36"/>
+                <Ellipse x:Name="ellipse4" HorizontalAlignment="Left" Height="250" Margin="584,0,0,0" Stroke="White" VerticalAlignment="Top" Width="240" StrokeThickness="36"/>
+            </Grid>
+            <Rectangle x:Name="backrect" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.426" Fill="White" Margin="0,0,0,0"/>
+            <Rectangle x:Name="backrect2" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.426" Fill="White" Margin="640,664,0,0"/>
+            <Rectangle x:Name="backrect3" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.426" Fill="#FFED523E" Margin="0,89,0,0">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle x:Name="backrect4" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.426" Fill="White" Margin="645,0,0,0"/>
             <Rectangle HorizontalAlignment="Left" Height="660" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="660" StrokeThickness="5"/>
             <Grid x:Name="fieldGrid" HorizontalAlignment="Left" Height="650" Margin="15,0,0,0" VerticalAlignment="Center" Width="650"/>
             <Rectangle HorizontalAlignment="Left" Height="660" Margin="680,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="575" StrokeThickness="5"/>
-            <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="182" Margin="705,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" FontSize="120" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" Gomoku"/>
+            <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="160" Margin="722,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" FontSize="110" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" Gomoku"/>
             <Button x:Name="BtnNewGame" HorizontalAlignment="Left" Height="125" VerticalAlignment="Top" Width="500" Click="NewGame" Background="{x:Null}" Margin="718,284,0,0" Foreground="Black" FontSize="90" FontStyle="Italic" BorderBrush="{x:Null}" Content="New Game" FontWeight="Bold">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">

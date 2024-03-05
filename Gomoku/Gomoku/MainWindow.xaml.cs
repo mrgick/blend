@@ -373,7 +373,6 @@ namespace Gomoku
                 return;
             }
 
-            Console.WriteLine("not leave");
             buttonBoard[r, c].Cursor = Cursors.Hand;
 
             Line line1 = new Line();
