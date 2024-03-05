@@ -23,6 +23,11 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -137,7 +142,7 @@
             <Grid x:Name="fieldGrid" HorizontalAlignment="Left" Height="650" Margin="15,0,0,0" VerticalAlignment="Center" Width="650"/>
             <Rectangle HorizontalAlignment="Left" Height="660" Margin="680,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="575" StrokeThickness="5"/>
             <TextBlock x:Name="text1" HorizontalAlignment="Left" Height="182" Margin="705,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" FontSize="120" FontWeight="Bold" FontStyle="Italic" Background="#FF191919" Foreground="White" Text=" Gomoku"/>
-            <Button x:Name="Btn" HorizontalAlignment="Left" Height="125" VerticalAlignment="Top" Width="500" Click="NewGame" Background="{x:Null}" Margin="718,284,0,0" Foreground="Black" FontSize="90" FontStyle="Italic" BorderBrush="{x:Null}" Content="New Game" FontWeight="Bold">
+            <Button x:Name="BtnNewGame" HorizontalAlignment="Left" Height="125" VerticalAlignment="Top" Width="500" Click="NewGame" Background="{x:Null}" Margin="718,284,0,0" Foreground="Black" FontSize="90" FontStyle="Italic" BorderBrush="{x:Null}" Content="New Game" FontWeight="Bold">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="{x:Null}" />

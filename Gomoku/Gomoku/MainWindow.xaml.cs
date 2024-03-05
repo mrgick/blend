@@ -31,11 +31,12 @@ namespace Gomoku
         GameLogic gameLogic;
         Computer computer;
         Button[,] buttonBoard;
+        private Line animLine1;
+        private Line animLine2;
         public MainWindow()
         {
             InitializeComponent();
             InitializeButton();
-            Console.WriteLine("heelo");
         }
 
         void InitializeButton()
@@ -71,6 +72,7 @@ namespace Gomoku
                     newButton.Name = "Button" + i.ToString() + "_" + j.ToString();
 
                     newButton.Click += NextMove;
+                    newButton.MouseEnter += OnMouseEnterCell;
                     newButton.Style = this.FindResource("FieldButton") as Style;
 
                     Grid.SetRow(newButton, i);
@@ -80,6 +82,11 @@ namespace Gomoku
                     buttonBoard[i, j] = newButton;
                 }
             }
+            BtnNewGame.IsEnabled = false;
+            RadioButton1.IsEnabled = false;
+            RadioButton2.IsEnabled = false;
+            RadioButton3.IsEnabled = false;
+            fieldGrid.MouseLeave += OnMouseLeaveGrid;
         }
 
         private void DrawEllipse(int r, int c)
@@ -294,11 +301,15 @@ namespace Gomoku
             Storyboard sb = (Storyboard)TryFindResource("Storyboard_TextBlock");
             sb.Begin();
             blurGrid.IsEnabled = true;
+            BtnNewGame.IsEnabled = true;
+            RadioButton1.IsEnabled = true;
+            RadioButton2.IsEnabled = true;
+            RadioButton3.IsEnabled = true;
         }
 
         public void NextMove(object sender, RoutedEventArgs e)
         {
-            Button sendButton = (Button)sender;
+            UIElement sendButton = (UIElement)sender;
             int r = Grid.GetRow(sendButton);
             int c = Grid.GetColumn(sendButton);
             
@@ -312,6 +323,7 @@ namespace Gomoku
 
             gameLogic.NextMove(r, c);
             DrawCross(r, c);
+            buttonBoard[r, c].Cursor = Cursors.Arrow;
             if (gameLogic.CheckWin(r, c))
             {
                 DrawEndMessage(1);
@@ -327,6 +339,7 @@ namespace Gomoku
             Move move = computer.NextMove();
             gameLogic.NextMove(move.row, move.column);
             DrawEllipse(move.row, move.column);
+            buttonBoard[move.row, move.column].Cursor = Cursors.Arrow;
             if (gameLogic.CheckWin(move.row, move.column))
             {
                 DrawEndMessage(2);
@@ -339,6 +352,81 @@ namespace Gomoku
                 return;
             }
 
+        }
+
+        private void OnMouseEnterCell(object sender, EventArgs e)
+        {
+            Button sendButton = (Button)sender;
+            int r = Grid.GetRow(sendButton);
+            int c = Grid.GetColumn(sendButton);
+            if (!gameLogic.IsEmpty(r, c))
+            {
+                return;
+            }
+
+            if (animLine1 != null && animLine2 != null)
+            {
+                Grid.SetRow(animLine1, r);
+                Grid.SetColumn(animLine1, c);
+                Grid.SetRow(animLine2, r);
+                Grid.SetColumn(animLine2, c);
+                return;
+            }
+
+            Console.WriteLine("not leave");
+            buttonBoard[r, c].Cursor = Cursors.Hand;
+
+            Line line1 = new Line();
+            line1.Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom("#66C4E3"));
+            line1.StrokeThickness = 7;
+            line1.X1 = 5;
+            line1.Y1 = 5;
+            line1.X2 = baseWidth - 5;
+            line1.Y2 = baseHeight - 5;
+            Grid.SetRow(line1, r);
+            Grid.SetColumn(line1, c);
+            Line line2 = new Line();
+            line2.Stroke = (SolidColorBrush)(new BrushConverter().ConvertFrom("#66C4E3"));
+            line2.StrokeThickness = 7;
+            line2.X1 = 5;
+            line2.Y1 = baseHeight - 5;
+            line2.X2 = baseWidth - 5;
+            line2.Y2 = 5;
+            Grid.SetRow(line2, r);
+            Grid.SetColumn(line2, c);
+            fieldGrid.Children.Add(line1);
+            fieldGrid.Children.Add(line2);
+            animLine1 = line1;
+            animLine2 = line2;
+            animLine1.MouseUp += new MouseButtonEventHandler(NextMove);
+            animLine2.MouseUp += new MouseButtonEventHandler(NextMove);
+            animLine1.Cursor = Cursors.Hand;
+            animLine2.Cursor = Cursors.Hand;
+
+            DoubleAnimation anim = new DoubleAnimation();
+            anim.From = 1.0;
+            anim.To = 0;
+            anim.AutoReverse = true;
+            anim.Duration = TimeSpan.FromSeconds(1);
+            anim.RepeatBehavior = RepeatBehavior.Forever;
+            line1.BeginAnimation(Line.OpacityProperty, anim);
+            line1.BeginAnimation(Line.OpacityProperty, anim);
+            line2.BeginAnimation(Line.OpacityProperty, anim);
+            line2.BeginAnimation(Line.OpacityProperty, anim);
+        }
+
+        private void OnMouseLeaveGrid(object sender, MouseEventArgs e)
+        {
+            if (animLine1 != null)
+            {
+                fieldGrid.Children.Remove(animLine1);
+                animLine1 = null;
+            }
+            if (animLine2 != null)
+            {
+                fieldGrid.Children.Remove(animLine2);
+                animLine2 = null;
+            }
         }
 
         private void NewGame(object sender, RoutedEventArgs e)
@@ -357,7 +445,12 @@ namespace Gomoku
             gameLogic = new GameLogic(nRows, nCols, 2);
             computer = new Computer(gameLogic, compLV);
             fieldGrid.IsEnabled = true;
-
+            BtnNewGame.IsEnabled = false;
+            RadioButton1.IsEnabled = false;
+            RadioButton2.IsEnabled = false;
+            RadioButton3.IsEnabled = false;
+            animLine1 = null;
+            animLine2 = null;
         }
 
         private void RadioButton1_Checked(object sender, RoutedEventArgs e)
